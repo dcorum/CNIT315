@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <stdbool.h>
+#include <string.h>
 
 #ifndef M_PI
 #				define M_PI acos(-1.0)
@@ -26,11 +27,11 @@ int main() {
 				float poolDeepToShallowTriangle;
 				float poolDeepToShallowRec;
 				bool yesNo = true; 
-				char lastVar;
+				
 				
 				while(yesNo)
 				{
-				
+				char* lastVar = "";	
 				float tubWidth =0;
 				float tubDepth=0;
 				
@@ -52,7 +53,7 @@ int main() {
 				scanf("%f",&tubDepth);
 				}
 				
-				tubCalc = (((pow((tubWidth/2),2)) * (tubDepth-.5)) * M_PI);
+				//tubCalc = (((pow((tubWidth/2),2)) * (tubDepth-.5)) * M_PI);
 				printf("The volume of the Hot Tub will equal %.2f \n",tubCalc);
 				printf("The Hot tub will hold %.2f gallons \n",(tubCalc*7.481));
 				
@@ -106,12 +107,17 @@ int main() {
 				printf("Total cost for both: %.2f \n",(((poolCalc*7.481)+(tubCalc*7.481))/10));
 				
 				printf("Do you want to start over with another dimension (y/n)?");
-				scanf("%c",&lastVar);
-				if(lastVar == 'n')
-				{
-				yesNo = false;
-				}
 				
+				
+				while(lastVar == ""){
+
+				scanf("%s",&lastVar);
+				printf("%c\n",lastVar);
+				if(lastVar == "n")
+				{
+				!yesNo;
+				}
+				}
 			}
 
 				return 0;
