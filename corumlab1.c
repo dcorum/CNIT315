@@ -26,12 +26,14 @@ int main() {
 				float poolWalkinCalc;
 				float poolDeepToShallowTriangle;
 				float poolDeepToShallowRec;
-				bool yesNo = true; 
+				bool yesNo = true;
+				int i; 
 				
 				
 				while(yesNo)
 				{
-				float lastVar = 3;	
+				//float lastVar = 3;
+				char lastVar = ' ';	
 				float tubWidth =0;
 				float tubDepth=0;
 				
@@ -106,14 +108,14 @@ int main() {
 				printf("Total gallons for both: %.2f \n",((poolCalc*7.481)+(tubCalc*7.481)));
 				printf("Total cost for both: %.2f \n",(((poolCalc*7.481)+(tubCalc*7.481))/10));
 				
-				printf("Do you want to start over with another dimension? Enter 0 for yes 1 for no: ");
+				printf("Do you want to start over with another dimension? (y/n): ");
 				
 				
-				while(lastVar == 3){
+				while(lastVar == ' '){
 
-				scanf("%f",&lastVar);
-				//printf("%f\n",lastVar);
-				if(lastVar == 1){
+				scanf("\n%c",&lastVar);
+				printf("%c\n",lastVar);
+				if(lastVar == 'n'){
 
 				 yesNo = false;
 			
