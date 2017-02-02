@@ -30,7 +30,16 @@ scanf(" %f",&fac_n);
 printf("\n%f = %f\n",fac_n,factorial(fac_n));
 
 }
+if(2==sel){
+float fib_m;
+printf("Enter the number you would like to use in the fibonacci function\n");
+scanf(" %f",&fib_m);
+printf("\n%f = %f\n",fib_m,fibonacci(fib_m));
+}
+if(3==sel){
+float han_l;
 
+}
 }
 
 }
@@ -42,5 +51,24 @@ else{
 return n * factorial(n-1);
 }
 }
+float fibonacci(float n){
+if(0>=n){
+return 0;
+}
+else if(1==n){
+return 1;
+}
+else{
+return (fibonacci(n-1)+fibonacci(n-2));
+}
+}
+void hanoi(float n,char peg_a,char peg_b,char peg_c)
+{
+if(1==n){
+printf("Move the top disk: peg %c -> peg %c \n", peg_a,peg_c);
+else{
 
+}
+}
+}
 
