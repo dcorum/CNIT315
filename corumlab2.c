@@ -9,7 +9,7 @@
 
 float factorial(float);
 float fibonacci(float);
-void hanoi(int,char,char,char);
+void hanoi(float,char,char,char);
 
 int main(){
 
@@ -38,7 +38,9 @@ printf("\n%f = %f\n",fib_m,fibonacci(fib_m));
 }
 if(3==sel){
 float han_l;
-
+printf("Enter the number of disks you would like to use in the hanoi function\n");
+scanf(" %f",&han_l);
+hanoi(han_l,'a','c','b');
 }
 }
 
@@ -62,13 +64,16 @@ else{
 return (fibonacci(n-1)+fibonacci(n-2));
 }
 }
-void hanoi(float n,char peg_a,char peg_b,char peg_c)
+void hanoi(float n,char peg_a,char peg_c,char peg_b)
 {
 if(1==n){
 printf("Move the top disk: peg %c -> peg %c \n", peg_a,peg_c);
+}
 else{
+hanoi(n-1,peg_a,peg_b,peg_c);
+printf("Move the top disk: peg %c -> peg %c \n", peg_a,peg_c);
+hanoi(n-1,peg_b,peg_c,peg_a);
+}
+}
 
-}
-}
-}
 
