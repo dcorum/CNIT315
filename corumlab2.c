@@ -13,35 +13,46 @@ void hanoi(float,char,char,char);
 
 int main(){
 
-float sel;
+float sel=4;
 
 while(1){
-printf("For factorial enter 1, for fibonacci enter 2 for hanoi enter 3...to exit enter 0\n");
-scanf(" %f",&sel);
+
+while(sel<0||sel>3){
+printf("For factorial enter 1\nFor fibonacci enter 2\nFor hanoi enter 3\nTo exit enter 0\n");
+scanf("%f",&sel);
+}
 if(0==sel){
 return 0;
 }
 if(1==sel)
 {
-float fac_n;
-
-printf("Enter the number you would like to use in the factorial function\n");
+float fac_n=13;
+while(fac_n<0||fac_n>12){
+printf("Enter the number you would like to use in the factorial function(0-12)\n");
 scanf(" %f",&fac_n);
-printf("\n%f = %f\n",fac_n,factorial(fac_n));
-
+}
+printf("\n%f! = %f\n",fac_n,factorial(fac_n));
+fac_n=13;
 }
 if(2==sel){
-float fib_m;
-printf("Enter the number you would like to use in the fibonacci function\n");
+float fib_m=47;
+while(fib_m<0||fib_m>46){
+printf("Enter the number you would like to use in the fibonacci function(0-46)\n");
 scanf(" %f",&fib_m);
-printf("\n%f = %f\n",fib_m,fibonacci(fib_m));
+}
+printf("\nf_%f = %f\n",fib_m,fibonacci(fib_m));
+fib_m=47;
 }
 if(3==sel){
-float han_l;
-printf("Enter the number of disks you would like to use in the hanoi function\n");
+float han_l=0;
+while(han_l<1||han_l>1000){
+printf("Enter the number of disks you would like to use in the hanoi function(1-1000)\n");
 scanf(" %f",&han_l);
-hanoi(han_l,'a','c','b');
 }
+hanoi(han_l,'a','c','b');
+han_l=0;
+}
+sel=4;
 }
 
 }
