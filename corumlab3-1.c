@@ -8,6 +8,7 @@
 # define M_PI acos(-1.0)
 #endif
 
+int num_ele(int [], int);
 void bubble_sort(int [], int);
 void selection_sort(int [], int);
 void insertion_sort(int [], int);
@@ -24,12 +25,11 @@ double time_taken;
 
 srand((unsigned int)time(NULL));
 
-for(i=10; i <= 10; i *= 10){
+for(i=10; i <= 10000; i *= 10){
 k=1*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -40,19 +40,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("bubble: %.20f",time_taken);
 printf("\n");
 
-value = is_sorted(global_array,k);
 
-if(value != 1){
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n", k);
+}
+else{
 printf("The array is not sorted \n");
 }
-else{
-printf("The array is sorted \n");
-}
 
-
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
-}
 
 printf("\n\n--\n\n");
 
@@ -60,7 +56,6 @@ k=2*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-/*printf("%d,", global_array[j]);*/
 }
 
 printf("\n");
@@ -73,16 +68,15 @@ printf("\n");
 
 value = is_sorted(global_array,k);
 
-if(value != 1){
-printf("The array is not sorted");
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n", k);
 }
 else{
-printf("The array is sorted");
+printf("The array is not sorted \n");
 }
 
-/*for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
-}*/
+
 
 printf("\n\n--\n\n");
 
@@ -90,7 +84,6 @@ k=5*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-/*printf("%d,", global_array[j]);*/
 }
 
 printf("\n");
@@ -103,28 +96,25 @@ printf("\n");
 
 value = is_sorted(global_array,k);
 
-if(value != 1){
-printf("The array is not sorted");
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
 else{
-printf("The array is sorted");
+printf("The array is not sorted \n");
 }
 
-/*for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
-}*/
 
 printf("\n\n--\n\n");
 
 
 }
-/*
+
+
 for(i=10; i <= 10000; i *= 10){
 k=1*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -135,9 +125,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("selection: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
@@ -145,7 +141,6 @@ k=2*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -156,9 +151,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("selection: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
@@ -166,7 +167,6 @@ k=5*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -177,9 +177,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("selection: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements:  \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
@@ -190,7 +196,6 @@ k=1*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -201,9 +206,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("insertion: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
@@ -211,7 +222,6 @@ k=2*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -222,9 +232,15 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("insertion: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
@@ -232,7 +248,6 @@ k=5*i;
 
 for(j=0; j < k; ++j){
 global_array[j] = rand();
-printf("%d,", global_array[j]);
 }
 
 printf("\n");
@@ -243,14 +258,19 @@ time_taken = ((double)(end - start))/CLOCKS_PER_SEC;
 printf("insertion: %.20f",time_taken);
 printf("\n");
 
-for(j=0; j<k; ++j){
-printf("%d,", global_array[j]);
+value = is_sorted(global_array,k);
+if(value == 2){
+printf("The array is sorted, it sorted %d elements: \n");
 }
+else{
+printf("The array is not sorted \n");
+}
+
+
 
 printf("\n\n--\n\n");
 
 }
-*/
 return 0;
 }
 
@@ -309,4 +329,12 @@ return 2;
 }
 }
 return 1;
+}
+
+int num_ele(int arr[], int n){
+int i,count;
+for(i=1;i<=n;i++){
+count=i;
+}
+return count;
 }
