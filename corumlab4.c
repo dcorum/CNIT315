@@ -40,44 +40,41 @@ int main() {
 	*(local_array + 1) = 19;
 	*(local_array + 2) = 12;
 	*(local_array + 3) = 5;
-	/*assert(0 == is_sorted_p(local_array, 4));*/
-printf("\n %d \n", is_sorted_p(local_array,4));
+	assert(0 == is_sorted_p(local_array, 4));
 	*(local_array + 0) = 5;
 	*(local_array + 1) = 12;
 	*(local_array + 2) = 19;
 	*(local_array + 3) = 90;
-	/*assert(1 == is_sorted_p(local_array, 4));*/
-printf("\n %d \n", is_sorted_p(local_array,4));
-
+	assert(1 == is_sorted_p(local_array, 4));
 
 	/* Bubble sort */
-	for(; i <= 10000; i *= 10) {
-		/* 10, 100, 1000, 10000 */
+	for(; i <= 10; i *= 10) {
+		
 		test_bubble_sort_p(local_array, i);
-		/* 20, 200, 2000, 20000 */
+	/*	
 		test_bubble_sort_p(local_array, 2 * i);
-		/* 50, 500, 5000, 50000 */
-		test_bubble_sort_p(local_array, 5 * i);
+		
+		test_bubble_sort_p(local_array, 5 * i);*/
 	}
 
 	/* Selection sort */
-	for(i = 10; i <= 10000; i *= 10) {
+	for(i = 10; i <= 10; i *= 10) {
 		/* 10, 100, 1000, 10000 */
 		test_selection_sort_p(local_array, i);
-		/* 20, 200, 2000, 20000 */
+/*		
 		test_selection_sort_p(local_array, 2 * i);
-		/* 50, 500, 5000, 50000 */
-		test_selection_sort_p(local_array, 5 * i);
+		
+		test_selection_sort_p(local_array, 5 * i);*/
 	}
 
 	/* Insertion sort */
-	for(i = 10; i <= 10000; i *= 10) {
+	for(i = 10; i <= 10; i *= 10) {
 		/* 10, 100, 1000, 10000 */
 		test_insertion_sort_p(local_array, i);
-		/* 20, 200, 2000, 20000 */
+/*		
 		test_insertion_sort_p(local_array, 2 * i);
-		/* 50, 500, 5000, 50000 */
-		test_insertion_sort_p(local_array, 5 * i);
+		
+		test_insertion_sort_p(local_array, 5 * i);*/
 	}
 
 	/* Clean Up */
@@ -108,8 +105,12 @@ void test_bubble_sort_p(int *ptr, int n) {
 	start = clock();
 	bubble_sort_p(ptr, n);
 	end = clock();
-
-	/*assert(1 == is_sorted_p(ptr, n));*/
+int i;
+for(i=0;i<n;i++){
+printf("\n %d \n", *ptr+i);
+}
+printf("\n %d \n", is_sorted_p(ptr, n));
+	assert(1 == is_sorted_p(ptr, n));
 
 	printf("bubble_p(%d): %f\n", n, (end - start) / CLOCKS_PER_SEC);
 }
@@ -127,7 +128,12 @@ void test_selection_sort_p(int *ptr, int n) {
 	selection_sort_p(ptr, n);
 	end = clock();
 
-	assert(1 == is_sorted_p(ptr, n));
+int i;
+for(i=0;i<n;i++){
+printf("\n %d \n", *ptr+i);
+}
+
+	/*assert(1 == is_sorted_p(ptr, n));*/
 
 	printf("selection_p(%d): %f\n", n, (end - start) / CLOCKS_PER_SEC);
 }
@@ -145,7 +151,12 @@ void test_insertion_sort_p(int *ptr, int n) {
 	insertion_sort_p(ptr, n);
 	end = clock();
 
-	assert(1 == is_sorted_p(ptr, n));
+int i;
+for(i=0;i<n;i++){
+printf("\n %d \n", *ptr+i);
+}
+
+	/*assert(1 == is_sorted_p(ptr, n));*/
 
 	printf("insertion_p(%d): %f\n", n, (end - start) / CLOCKS_PER_SEC);
 }
@@ -166,12 +177,30 @@ swap(*arr+j-1, *arr+j);
 
 }
 
-void selection_sort_p(int *ptr, int n) {
-	/* Your code here */
+void selection_sort_p(int *arr, int n) {
+int i, j;
+
+for(i=0;i<n;i++){
+
+for(j=i+1;j<n;j++){
+if(*(arr+i)>*(arr+j)){
+swap(*(arr+i),*(arr+j));
+}
+}
+}
 }
 
 void insertion_sort_p(int *ptr, int n) {
-	/* Your code here */
+int i,j,tmp;
+for(i=1;i<n;i++){
+tmp=*(ptr+i);
+j=i-1;
+while(tmp<*(ptr+j)&&j>=0){
+*(ptr+(j+1))=*(ptr+j);
+j--;
+}
+*(ptr+(j+1))=tmp;
+}
 }
 
 void swap(int a, int b) {
@@ -182,8 +211,8 @@ b = t;
 
 int is_sorted_p(int *ptr, int n) {
 int i;
-for(i=0;i<n;i++){
-if(*ptr+i>*ptr+(i+1)){
+for(i=0;i<(n-1);i++){
+if(*(ptr+i)>*(ptr+(i+1))){
 return 0;
 }
 }
