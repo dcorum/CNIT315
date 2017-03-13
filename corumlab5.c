@@ -4,6 +4,12 @@
 #include <time.h>
 #include <string.h>
 
+struct addendee{
+int id;
+char firstName[31], middleName[31], lastName[31], association[31], title[31];
+struct addendee *next;
+};
+
 int main() {
 int choice=0;
 char firstName[31], middleName[31], lastName[31], association[31], title[31], input[128];
@@ -38,6 +44,7 @@ sscanf(input, "%31s", lastName);
 printf("Association: ");
 fgets(input, 128, stdin);
 sscanf(input, "%31s", association);
+
 }
 
 return 0;
