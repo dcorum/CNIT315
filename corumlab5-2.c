@@ -60,7 +60,7 @@ sscanf(input, "%31s", tmp->lastName);
 printf("Association: ");
 fgets(input, 128, stdin);
 sscanf(input, "%31s", tmp->association);
-
+memset(input,0,sizeof input);
 printf("Membership Since(MM/DD/YYYY): ");
 fgets(input, 128, stdin);
 sscanf(input, "%d/%d/%d", &(tmp->month), &(tmp->day), &(tmp->year));
@@ -75,6 +75,15 @@ id=id+1;
 while(choice == 3){
 test=1;
 break;
+}
+
+while(choice == 2){
+printf("\n# List of All Attendees \n## There are %d attendees registered.\n", tosp->id);
+while(tosp != NULL){
+pop(tosp);
+}
+printf("\n\n##End of the List\n");
+choice=0;
 }
 }
 return 0;
@@ -105,5 +114,23 @@ tosp = new;
 }
 
 void pop(struct attendee *attendee){
+struct attendee *tempAddr;
+
+strcpy(attendee->title,tosp->title);
+strcpy(attendee->firstName,tosp->firstName);
+strcpy(attendee->middleName,tosp->middleName);
+strcpy(attendee->lastName,tosp->lastName);
+strcpy(attendee->association,tosp->association);
+attendee->month=tosp->month;
+attendee->day=tosp->day;
+attendee->year=tosp->year;
+attendee->id=tosp->id;
+
+printf("\n %d. %s %s %s %s (%s) Member since %d/%d/%d", attendee->id,attendee->title,attendee->firstName,attendee->middleName,attendee->lastName,attendee->association,attendee->month,attendee->day,attendee->year);
+
+tempAddr=tosp->prioradd;
+
+tosp = tempAddr;
+
 
 }
