@@ -19,8 +19,8 @@ int i=1;
 
 int main() {
 char input[31], test=0;
-int choice=0, id=1, many;;
-int month, day, year;
+int choice=0, id=1;
+
 
 struct attendee *tmp;
 tmp = malloc(sizeof(struct attendee));
@@ -84,11 +84,10 @@ while(choice == 2){
 struct attendee *temp;
 temp = (struct attendee *) malloc(sizeof(struct attendee));
 temp = tosp;
-
+if(tosp != NULL){
 printf("\n# List of All Attendees \n## There are %d attendees registered.\n", tosp->id);
-
+}
 while(tosp != NULL){
-
 pop(tosp);
 i=i+1;
 }
@@ -98,6 +97,11 @@ tosp = temp;
 
 choice=0;
 }
+
+while(choice != 0 && choice != 1 && choice != 2 && choice != 3){
+choice = 0;
+}
+
 }
 return 0;
 }
