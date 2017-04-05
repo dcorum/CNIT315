@@ -15,8 +15,6 @@ void push(struct attendee *);
 void pop(struct attendee *);
 struct attendee *tosp;
 
-int i=1;
-
 int main() {
 char input[31], test=0;
 int choice=0, id=1;
@@ -89,7 +87,7 @@ printf("\n# List of All Attendees \n## There are %d attendees registered.\n", to
 }
 while(tosp != NULL){
 pop(tosp);
-i=i+1;
+
 }
 printf("\n\n##End of the List\n");
 
@@ -144,7 +142,7 @@ attendee->day=tosp->day;
 attendee->year=tosp->year;
 attendee->id=tosp->id;
 
-printf("\n %d. %s %s %s %s (%s) Member since %d/%d/%d", i,attendee->title,attendee->firstName,attendee->middleName,attendee->lastName,attendee->association,attendee->month,attendee->day,attendee->year);
+printf("\n %d. %s %s %s %s (%s) Member since %d/%d/%d", attendee->id,attendee->title,attendee->firstName,attendee->middleName,attendee->lastName,attendee->association,attendee->month,attendee->day,attendee->year);
 
 tempAddr=tosp->prioradd;
 
