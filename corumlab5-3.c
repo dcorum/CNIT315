@@ -11,6 +11,8 @@ char firstName[31], middleName[31], lastName[31], association[31], title[31];
 struct attendee *prioradd;
 };
 
+void deleteNode(struct attendee **, int);
+struct attendee* getNth(struct attendee *, int);
 void push(struct attendee *);
 void pop(struct attendee *);
 struct attendee *tosp;
@@ -24,7 +26,7 @@ struct attendee *tmp;
 tmp = malloc(sizeof(struct attendee));
 
 while(test==0){
-printf("\n#Menu \n1. Enter Attendee Information \n2. List All Attendees \n3. Quit\n\nWhat do you want to do? (1/2/3): ");
+printf("\n#Menu \n1. Enter Attendee Information \n2. Deregister an Attendee \n3. List All Attendees \n4. Search for an Attendee \n5. Quit\n\nWhat do you want to do? (1/2/3/4/5): ");
 while(choice == 0){
 fgets(input,128, stdin);
 sscanf(input, "%d", &choice);
@@ -73,12 +75,12 @@ push(tmp);
 id=id+1;
 }
 
-while(choice == 3){
+while(choice == 5){
 test=1;
 break;
 }
 
-while(choice == 2){
+while(choice == 3){
 struct attendee *temp;
 temp = (struct attendee *) malloc(sizeof(struct attendee));
 temp = tosp;
@@ -96,7 +98,50 @@ tosp = temp;
 choice=0;
 }
 
-while(choice != 0 && choice != 1 && choice != 2 && choice != 3){
+while(choice == 2){
+char ch;
+int dereg;
+int index=0;
+
+
+while(dereg != 1 && dereg != 2 && dereg != 3 && dereg != 4 && dereg != 5){
+printf("\n# Deregistering an Attendee \n## Additional information required \n1. Deregister by Registration Number \n2. Deregister by Registration Number \n3. Deregister by Last Name \n4. Deregister by Association \n5. Deregister by Membership Begin Date\n");
+
+fgets(input,128, stdin);
+sscanf(input, "%d", &dereg);
+}
+
+if(dereg == 1){
+while(index <= 0){
+printf("\n## Deregister by Registration Number\n");
+fgets(input,128, stdin);
+sscanf(input, "%d", &index);
+}
+
+if(tosp != NULL){
+struct attendee *test= getNth(tosp, index); /*breaks here if you enter a number that is not in the list*/
+printf("\n%d. %s %s %s %s (%s) Member since %d/%d/%d\n", test->id,test->title,test->firstName,test->middleName,test->lastName,test->association,test->month,test->day,test->year);
+
+while(ch != 'y' && ch != 'n'){
+printf("\nIs this the attendee the one you want to deregister? (y/n) ");
+fgets(input,128,stdin);
+sscanf(input, "%c", &ch);
+}
+if(ch == 'y'){
+deleteNode(&tosp, index);
+dereg = 0;
+choice = 0;
+}
+if(ch == 'n'){
+break;
+}
+}
+
+
+}
+}
+
+while(choice != 0 && choice != 1 && choice != 2 && choice != 3 && choice !=4 &&choice != 5){
 choice = 0;
 }
 
@@ -149,3 +194,42 @@ tempAddr=tosp->prioradd;
 tosp = tempAddr;
 
 }
+
+struct attendee* getNth(struct attendee *head, int userID){
+struct attendee *current = tosp;
+int count = tosp->id;
+
+while(current != NULL)
+{
+
+if(userID == count){
+return(current);
+}
+count--;
+current = current->prioradd;
+}
+printf("Sorry, there is no attendee with this registration number, try again");
+return(NULL);
+}
+
+void deleteNode(struct attendee **head, int key){
+struct attendee *temp = *head, *prev;
+int i=temp->id;
+
+if(temp != NULL && temp->id==key){
+*head = temp->prioradd;
+free(temp);
+return;
+}
+
+while(temp != NULL && i!=key){
+prev = temp;
+temp = temp->prioradd;
+}
+if(temp==NULL) return;
+
+prev->prioradd = temp->prioradd;
+
+free(temp);
+}
+
